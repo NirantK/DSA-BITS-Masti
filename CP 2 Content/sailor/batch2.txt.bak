@@ -1,0 +1,63 @@
+Birla Institute of Technology and Science,Pilani
+    Course: TA C252 Computer Programming II
+ OnLine Test-3   Batch-2   Dt:5-10-08  Max. marks 45M                      
+--------------------------------------------------------
+
+Consider two lists, one list containing SAIL_MAX sailors and another list 
+  containing BOAT_MAX  boats. Each sailor contains the following information
+ in its record (as given in file boatsail.h) 
+
+1. An unsigned int sid representing the unique identification number
+                        of the Sailor.
+2. A character array of maximum 30 characters for the name of Sailor.
+3. An unsigned int exp for indicating the experience of a Sailor. 
+4. An unsigned int ownsbid that represents the unique id of boat owned
+                        by the Sailor.
+
+  Each boat contains the following information in its record (as given
+  in file sailor.h).
+
+1. An unsigned int bid representing the unique identification number
+                        of the Boat.
+2. A character array of maximum 30 characters for the name of Boat.
+3. An unsigned int numSailed for storing the number of ours the Boat
+                        has sailed in sea.
+
+The operations supported by these data types are given in boatsailOps.h
+
+1. int locateBoat(ID boatid, BoatList bl, Size s);
+       searches for a Boat with id as boatid in the unordered list 
+       BoatList bl. It returns the position at which such a boat is found
+       in BoatList bl. If no such Boat is found, whose id is boatid, the
+       function returns -666.
+
+2. void PrintDetails(SailorList sl, Size sailors, BoatList bl, Size boats);
+	Prints the details of all sailors in the SailorList sl.
+	The function prints the name of the sailor, his id, the name of
+	the boat he owns and its number of hours sailed.
+	Assume sailors and boats are greater than 0.
+
+3. void sortSailors(SailorList sl, Size sailors, BoatList bl, Size boats);
+
+	Sorts the sailors in the SailorList , sl, based on non-decreasing
+	order of the number of hours the boats owned by them have sailed.
+	If more than one sailor owns boats that have traelled the same
+	duration, then sort them based on increasing order of the sailor's
+	id. Implement sorting with the help of insertion sort. The
+        sortSailors function uses the function insertSailor as described
+	below.
+
+4. void insertSailor(Sailor s, SailorList sl, Size sailors,
+                  BoatList bl, Size boats)
+ 
+	Inserts the Sailor s into the SailorList sl, maintaining the order
+	as descrbed above.
+
+Complete the above mentioned functions in boatsailOps.c.
+Assume that all precondition are checked before making function calls.
+ (You need not check the precondition in your code).
+
+Compilation:
+
+gcc -c boatsailOps.c
+gcc -o exe main.c boatsailOps.o 

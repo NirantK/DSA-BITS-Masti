@@ -1,0 +1,1173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!-- saved from url=(0039)http://staff.washington.edu/rells/R110/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>
+Using vi, the Unix Visual Editor
+</title>
+<style type="text/css"></style></head>
+<body bgcolor="#FFFFFF">
+
+
+<p align="center">
+<img src="./Using vi, the Unix Visual Editor_files/cac_ct.gif" border="0" vspace="5" hspace="5" alt="[C&amp;C Computer Training]">
+</p>
+
+<h1 align="center">
+Using vi, the Unix Visual Editor
+</h1>
+
+<hr>
+
+<dl>
+<dt><strong>Description</strong></dt>
+
+  <dd>You will learn to use vi, the full screen editor found 
+  on nearly all Unix systems. Basic commands
+  are covered, including those that enable you 
+  to insert, delete, change, replace, and copy text, and to
+  move around within and between files. In addition, 
+  you will learn how to set editing options for
+  your files, temporarily or permanently, globally or locally.
+
+</dd><dt><strong>What You Will Learn</strong></dt>
+
+  <dd>You will learn (1) how to start and end vi edit sessions,
+  (2) how to move around in a file, (3) how to enter new text,
+  (4) how to modify, move, and delete old text, and (5) how to
+  read from and write to files other than the one you are editing. 
+
+</dd><dt><strong>Instructor</strong></dt>
+ 
+  <dd><a href="http://weber.u.washington.edu/~rells">Rick Ells</a>
+
+</dd><dt><strong>Prerequisites</strong></dt>
+
+  <dd>R105 or equivalent knowledge.
+
+</dd><dt><strong>Table of Contents</strong></dt>
+
+<dd><dl>
+  <dt><b><a href="http://staff.washington.edu/rells/R110/#basics">A. Vi Basics</a></b>
+     <ol>
+       <li><a href="http://staff.washington.edu/rells/R110/#basics1">About vi</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#basics2">Starting vi</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#basics3">vi Modes</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#basics4">Basic Cursor Movement</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#basics5">Entering, Deleting, and Changing Text</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#basics6">Setting Basic Options in vi</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#basics7">Exiting vi</a> 
+       </li><li><a href="http://staff.washington.edu/rells/R110/#basics8">Basics Summary</a> 
+     </li></ol>
+  </dt><dt><b><a href="http://staff.washington.edu/rells/R110/#intermediate">B. Intermediate Vi</a></b>
+     <ol>
+       <li><a href="http://staff.washington.edu/rells/R110/#intermed1">More On Cursor Movement</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed2">Entering Text Mode</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed3">Commands and Objects</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed4">Replacing and Changing Text</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed5">Deleting Text</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed6">Copying and Pasting Text</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed7">Other Useful Commands</a> 
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed8">Buffers</a> 
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed9">Copying, Deleting, 
+           or Moving Text Using Line Numbers</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed10">Searching for Text</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#intermed11">Substitutions</a>
+     </li></ol>
+  </dt><dt><b><a href="http://staff.washington.edu/rells/R110/#advanced">C. Advanced Vi</a></b>
+     <ol>
+       <li><a href="http://staff.washington.edu/rells/R110/#advanced1">Writing to and Reading from Files</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#advanced2">More About Options</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#advanced3">Customizing vi Sessions</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#advanced4">Creating a .exrc File</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#advanced5">Abbreviations &amp; Mapping</a>
+     </li></ol>
+  </dt><dt><b><a href="http://staff.washington.edu/rells/R110/#tips">D. Tips and Tricks</a></b>
+     <ol>
+       <li><a href="http://staff.washington.edu/rells/R110/#tips1">Making vi an Editor in Pine</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#tips2">vi-ing More Than One File</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#tips3">Moving the Left Margin</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#tips4">Issuing Shell Commands From vi</a>
+       </li><li><a href="http://staff.washington.edu/rells/R110/#tips5">Double Spacing a File</a> 
+     </li></ol>
+</dt></dl>
+</dd></dl>
+<hr>
+
+<h2>
+<a name="basics">A. VI BASICS</a>         
+</h2>
+  <ol> 
+  <h2>
+  <li><a name="basics1">About vi</a>
+  </li></h2>
+  
+  <p>
+  <b>vi is Found on Nearly Every Unix Computer</b>
+  </p>
+  
+  <ul>
+    <li> vi is the standard Unix editor
+    <p></p>
+  
+    </li><li> Other documents on vi:
+      <ul>
+        <li> <a href="http://staff.washington.edu/rells/R110/help_vi.html">How To Use The vi Editor</a>
+        </li><li> <a href="http://staff.washington.edu/rells/R110/help_viref.html">Vi Reference</a>
+        </li><li> <a href="http://www.eng.hawaii.edu/Tutor/vi.html">
+             Mastering the VI editor</a> - University of Hawaii at Manoa
+        </li><li> <a href="http://thomer.com/vi/vi.html">Vi
+             Lovers Home Page</a>
+        </li><li> <a href="http://130.70.40.10/tutorial/vi/vi_tutor.html">Visual
+             Editor (vi): A Tutorial</a> - University of Southwestern Louisiana
+      </li></ul>
+    <p></p>
+  
+  </li></ul>
+  
+  <p>
+  <b>vi is Powerful and Fast</b>
+  </p>
+  
+  <ul>
+    <li> Your terminal displays a section of the file you are editing 
+    <p></p>
+  
+    </li><li> vi can do anything you want
+    <p></p>
+  
+    </li><li> You don't need to remove your fingers from the standard typing 
+         keys-the keys themselves give commands to vi
+    <p></p>
+  </li></ul>
+  
+  <p>
+  <b>vi Stays Out of Your Way</b>
+  </p>
+  
+  <ul>
+    <li> vi has no menus
+    <p></p>
+  
+    </li><li> vi commands are short
+    <p></p>
+  </li></ul>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="basics2">Starting vi</a>
+  </li></h2>
+  
+  <p>
+  Open a file with vi.  Type: <b>vi myfile.txt</b>
+  </p>
+  
+  <ul>
+    <li> If <b>myfile.txt</b> does not exist, a screen 
+         will appear with just a cursor at 
+         the top followed by tildes (~) in the first column.
+         <p></p>
+  
+    </li><li> If <b>myfile.txt</b> does exist, the 
+         first few line of the file will appear.
+         <p></p>
+  
+    </li><li> The status line at the bottom of your screen shows error 
+         messages and provides information and feedback, including the 
+         name of the file.
+         <p></p>
+  </li></ul>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="basics3">vi Modes</a>
+  </li></h2>
+  
+  <p>
+  <b>Command Mode</b>
+  </p>
+  
+  <ul>
+    <li> Command mode is the mode you are in when you start (default mode)
+         <p></p>
+  
+    </li><li> Command mode is the mode in which commands 
+         are given to move around in the 
+         file, to make changes, and to leave the file
+         <p></p>
+  
+    </li><li> Commands are case sensitive:  j not the same as J
+         <p></p>
+  
+    </li><li> Most commands do not appear on the screen as you type them. 
+         Some commands will appear on the last line:    : / ? 
+         <p></p>
+  </li></ul>
+  
+  <p>
+  <b>Insert (or Text) Mode</b>
+  </p>
+  
+  <ul>
+  <li> The mode in which text is created. 
+  (You must press <b>&lt;Return&gt;</b> at 
+  the end of each line unless you've set wrap margin.)
+         <p></p>
+  
+  </li><li> There is more than one way to get into insert mode but only one 
+  way to leave:  return to command mode by pressing <b>&lt;Esc&gt;</b>
+         <p></p>
+  </li></ul>
+  
+  
+  
+  <p>
+  When in doubt about which mode you are in, press <b>&lt;Esc&gt;</b>
+  </p>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="basics4">Basic Cursor Movement</a>
+  </li></h2>
+ 
+  <center>
+  <img src="./Using vi, the Unix Visual Editor_files/vi_hjkl.gif">
+  </center>
+ 
+  <pre>
+    <i>From Command Mode</i>
+  
+    <b>k</b>    <i>Up one line</i>
+  
+    <b>j</b>    <i>Down one line</i>
+  
+    <b>h</b>    <i>Left one character</i>
+  
+    <b>l</b>    <i>Right one character (or use <b>&lt;Spacebar&gt;</b>)</i>
+  
+    <b>w</b>    <i>Right one word</i>
+  
+    <b>b</b>    <i>Left one word</i>
+  
+    <p></p>
+  </pre>
+  
+  <p>
+  NOTE: Many vi commands can take a leading count (e. g., 6k, 7e).
+  </p>
+
+  <hr>
+  
+  <h2>
+  <li><a name="basics5">Entering, Deleting, and Changing Text</a>
+  </li></h2>
+  <pre>
+    <i>From Command Mode</i>
+  
+    <b>i</b>    <i>Enter text entry mode</i>
+  
+    <b>x</b>    <i>Delete a character</i>
+  
+    <b>dd</b>   <i>Delete a line</i>
+  
+    <b>r</b>    <i>Replace a character</i>
+  
+    <b>R</b>    <i>Overwrite text, press <b>&lt;Esc&gt;</b> to end</i>
+  
+  </pre>
+
+  <hr>
+  
+  <h2>
+  <li><a name="basics6">Setting Basic Options in vi</a>
+  </li></h2>
+ 
+  <p>
+  <b>Displaying Line Numbers</b>
+  </p>
+  
+  <pre>    <i>From Command Mode</i>
+  
+    <b>:set nu</b>    <i>Display line numbers</i>
+  
+    <b>:set nonu</b>  <i>Hide line numbers</i>
+  </pre>
+  
+  <p>
+  <b>Setting Right Margin</b>
+  </p>
+  
+  <pre>    <i>From Command Mode</i>
+  
+    <b>:set wm=number</b>  <i>Set Wrap Margin number of spaces from right</i>
+                              <i>edge of screen</i>
+  
+    <b>:set wm=10</b>      <i>Set Wrap Margin 10 spaces from right edge</i>
+                              <i>of screen</i>
+  
+    <b>:set wm=0</b>       <i>Turn off Wrap Margin</i>
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="basics7">Exiting vi</a>
+  </li></h2>
+  
+  <ul>
+  <li> To exit you must be in command mode-press <b>&lt;Esc&gt;</b> if you are 
+  not in command mode
+         <p></p>
+  
+  </li><li> You must press <b>&lt;Return&gt;</b> after commands that begin with a  :
+         (colon)<p></p>
+  </li></ul>
+  
+  <pre>    <i>From Command Mode</i>
+
+    <b>ZZ</b>     <i>Write (if there were changes), then quit</i>
+  
+    <b>:wq</b>    <i>Write, then quit</i>
+  
+    <b>:q</b>     <i>Quit (will only work if file has not been changed)</i>
+  
+    <b>:q!</b>    <i>Quit without saving changes to file</i>
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="basics8">Basics Summary</a>
+  </li></h2>
+  
+  <pre>  
+    <i>UNIX</i>   ---&gt; <b>vi</b> <i>file</i> ---&gt;  <i>COMMAND</i>  ---&gt; <b>i I a A o O</b> ---&gt;  <i>TEXT</i> 
+    <i>SHELL</i>  &lt;---- <b>ZZ</b> &lt;-------  <i>MODE</i>     &lt;------ <b>&lt;Esc&gt;</b> &lt;------  <i>MODE</i>
+  
+  </pre>
+
+  <blockquote>
+  <p>
+  <b>A Basic vi Session</b> 
+  </p>
+  
+  <ol>
+    <li> To enter vi, type:  <b>vi</b> <i>filename</i> <b>&lt;Return&gt;</b>
+    <p></p>
+  
+    </li><li> To enter insert mode, type:      <b>i</b>
+    <p></p>
+  
+    </li><li> Type in the text:   <b>This is easy.</b>
+    <p></p>
+  
+    </li><li> To leave insert mode and return to command mode, press:  
+         <b>&lt;Esc&gt;</b>
+    <p></p>
+  
+    </li><li> In command mode, save changes and exit vi by typing: 
+         <b>:wq &lt;Return&gt;</b>
+    <p></p>
+  
+    <p>
+    You are back at the Unix prompt.
+    </p>
+  
+  </li></ol>
+  </blockquote>
+</ol>
+  
+<hr size="5">
+  
+<h2>
+<a name="intermediate">B. INTERMEDIATE VI</a>     
+</h2>
+  <ol> 
+  <h2>
+  <li><a name="intermed1">More On Cursor Movement</a>
+  </li></h2>
+  
+  <p>
+  </p>
+  
+  <pre>    <i>From Command Mode</i>
+
+    <b>e</b>    <i>Move to end of current word</i>
+  
+    <b>$</b>    <i>Move to end of current line</i>
+  
+    <b>^</b>    <i>Move to beginning of current line</i>
+  
+    <b>+</b>    <i>Move to beginning of next line</i>
+  
+    <b>-</b>    <i>Move to beginning of previous line</i>
+
+  
+    <b>G</b>    <i>Go to last line of the file</i>
+  
+    <b>:</b><i>n</i>   <i>Go to line with this number (:10 goes to line 10)</i>
+
+  
+    <b>&lt;Ctrl&gt;d</b>   <i>Scroll down one-half screen</i>
+  
+    <b>&lt;Ctrl&gt;u</b>   <i>Scroll up one-half screen</i>
+  
+    <b>&lt;Ctrl&gt;f</b>   <i>Scroll forward one full screen</i>
+  
+    <b>&lt;Ctrl&gt;b</b>   <i>Scroll backward one full screen</i>
+  
+
+    <b>)</b>         <i>Move to the next sentence</i>
+  
+    <b>(</b>         <i>Move to the previous sentence</i>
+  
+    <b>}</b>         <i>Move to the next paragraph</i>
+  
+    <b>{</b>         <i>Move to the previous paragraph</i>
+ 
+  
+    <b>H</b>         <i>Move to the top line of the screen</i>
+  
+    <b>M</b>         <i>Move to the middle line of the screen</i>
+  
+    <b>L</b>         <i>Move to the last line of the screen</i>
+
+  
+    <b>%</b>         <i>Move to matching bracket:  ( { [ ] } )</i>
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed2">Entering Text Mode</a>
+  </li></h2>
+  
+  
+  <pre>    <i>From Command Mode</i>
+  
+    <b>i</b>    <i>Insert text before current character</i>
+  
+    <b>a</b>    <i>Append text after current character</i>
+  
+    <b>I</b>    <i>Begin text insertion at the beginning of a line</i>
+  
+    <b>A</b>    <i>Append text at end of a line</i>
+  
+    <b>o</b>    <i>Open a new line below current line</i>
+  
+    <b>O</b>    <i>Open a new line above current line</i>
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed3">Commands and Objects</a>
+  </li></h2>
+  
+  <pre>    <b>Format                         Example</b>
+  
+      <i>operator number object</i>          <b>c2w</b>
+  
+      <i>number operator object</i>          <b>2cw</b>
+  
+  
+    <b>Operators</b>              
+  
+      <b>c</b>   <i>change</i>             
+  
+      <b>d</b>   <i>delete</i>            
+  
+      <b>y</b>   <i>yank</i>            
+  
+  
+    <b>Objects and Locations</b>
+  
+      <b>w</b>           <i>one word forward</i> 
+  
+      <b>b</b>           <i>one word backward</i>
+  
+      <b>e</b>           <i>end of word</i>
+  
+      <b>H, M, L</b>     <i>top, middle, or bottom line on screen</i>
+  
+      <b>), (</b>        <i>next sentence, previous sentence</i>
+  
+      <b>}, {</b>        <i>next paragraph, previous paragraph</i>
+  
+      <b>^, $</b>        <i>beginning of line, end of line</i>
+  
+      <b>/pattern/</b>   <i>forward to pattern</i> 
+  
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed4">Replacing and Changing Text</a>
+  </li></h2>
+  
+  <pre>    <i>From Command Mode</i>
+  
+    <b>r</b>        <i>Replace only the character under the cursor.</i>
+                    <i>(Note: using r you remain in command mode.)</i>
+  
+    <b>R</b>        <i>Beginning with the character under the cursor,</i> 
+                    <i>replace as many characters on this line as you</i> 
+                    <i>want. (You are in overtype mode until you </i>
+                    <i>press &lt;Esc&gt;</i>
+  
+    <b>cw</b>       <i>Beginning with the character under the cursor, </i>
+                    <i>change a word to whatever you type.  (You are</i> 
+                    <i>in insert mode until you press &lt;Esc&gt;)</i>
+  
+    <b>c$</b>       <i>Beginning with the character under the cursor,</i> 
+    <b>C</b>               <i>change a line to whatever you type. (You are</i>
+                    <i>in insert mode until you press &lt;Esc&gt;)</i>
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed5">Deleting Text</a>
+  </li></h2>
+  
+  <pre>    <i>From Command Mode</i>
+  
+    <b>x</b>       <i>Delete a character</i>
+  
+    <b>dw</b>      <i>Delete an alphabetic word and the following space</i>
+                   <i>(6dw deletes six words)</i>
+  
+    <b>dW</b>      <i>Delete a blank-delimited word and the following space</i>
+  
+    <b>dd</b>      <i>Delete a line (6dd deletes six lines)</i>
+  
+    <b>d$</b>      <i>Delete all characters to the end of the line.</i>
+    <b>D</b>             
+  
+    <b>d}</b>      <i>Delete all characters to the end of the paragraph.</i>
+  
+    <b>:5,30d</b>  <i>Delete lines 5 through 30</i>
+  </pre>
+  
+  <p>
+  Deleted text goes into a temporary buffer that is replaced each time 
+  you delete (or copy) more text.  The current contents of the buffer can 
+  be put back into your file. 
+  </p>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed6">Copying and Pasting Text</a>
+  </li></h2>
+  
+  <pre>    <i>From Command Mode</i>
+  
+    <b>yy</b>        <i>Copy (yank) the current line</i> 
+  
+    <b>6yy</b>       <i>Copy (yank) six lines, beginning with the current line</i>
+  
+    <b>yw</b>        <i>Copy the current word</i>
+  
+    <b>p</b>         <i>Put the text after the cursor position</i>
+  
+    <b>P</b>         <i>Put the text before the cursor position</i>
+  </pre>
+  
+  <p>
+  Copied text goes into a temporary buffer that is replaced each time 
+  you copy (or delete) more text.  Only the current contents of the 
+  temporary buffer can be put back into your file. As a result, when you 
+  use copy (y), use the put (p) command immediately.
+  </p>
+  
+  <p>
+  A yank and put procedure using colon commands:
+  </p>
+  
+  <ol>
+    <li> <tt><b>:5,10y</b></tt>   <i>Copy lines 5-10</i>
+      <p></p>
+    </li><li> <i>Move cursor</i>
+      <p></p>
+    </li><li> <tt><b>:put</b></tt>   <i>Put after cursor</i>
+  </li></ol>
+  <p></p> 
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed7">Other Useful Commands</a>
+  </li></h2>
+  
+  <pre>    <i>From Command Mode</i>
+  
+    <b>.</b>    <i>Repeat last command</i>
+  
+    <i>n</i><b>.</b>   <i>Repeat last command n number of times</i>
+  
+    <b>J</b>    <i>Join next line to current line</i>
+  
+    <b>u</b>    <i>Undo last single change</i>
+  
+    <b>U</b>    <i>Restore current line </i>
+  
+    <b>~</b>    <i>Change letter's case (capital to lower and vice versa)</i>
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed8">Buffers</a>
+  </li></h2>
+  
+  <p>
+  <b>Temporary Buffer</b>
+  </p>
+  
+  <p>
+  Deleted or copied text goes into a temporary unnamed buffer. 
+  The contents of the temporary buffer may be retrieved by using
+  the <b>p</b> or <b>P</b> commands.
+  </p>
+  
+  <pre>    <b>p</b>   <i>Put words from temporary buffer after cursor or</i>
+               <i>put lines from temporary buffer below current line</i>
+  
+    <b>P</b>   <i>Put words from temporary buffer before cursor or</i>
+               <i>put lines from temporary buffer above current line</i>
+  </pre>
+  
+  <p>
+  <b>Lettered Buffers</b>
+  </p>
+  
+  <p>
+  There are 26 lettered buffers (a-z). 
+  Contents of a lettered buffer are 
+  saved until you copy or delete more 
+  characters into it, or until you quit 
+  your current vi session.
+  </p>
+  
+  <pre> 
+  <i>From Command Mode</i>
+
+  <b>"ayy</b>     <i>Copy (yank) a line into buffer a</i>
+  
+  <b>"Ayy</b>     <i>Appends to buffer a</i>
+  
+  <b>"a10yy</b>   <i>Copies 10 lines into buffer a</i>
+  
+  <b>"a10dd</b>   <i>Deletes 10 lines of text into buffer a</i> 
+  
+  <b>"ap</b>      <i>Put contents of lettered buffer a below the current line</i>
+  </pre> 
+  
+  <p>
+  Both temporary and lettered buffers last only 
+  for the current vi session. 
+  </p>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed9">Copying, Deleting, or Moving Text Using Line Numbers</a>
+  </li></h2>
+  
+  <ul>
+  <li> These commands start with a colon (<b>:</b>) and end with a 
+       <b>&lt;Return&gt;</b> or <b>&lt;Enter&gt;</b>
+  
+  </li><li> <b>&lt;Ctrl&gt;g</b> shows the line number of the current line
+  
+  </li><li> The basic form of colon commands is
+       <p></p>
+
+       <p> 
+       <b>:beginning_line, ending_line command destination</b><br>
+       </p>
+  
+       <p>
+       where destination is the line after which you want the 
+       text placed.
+  </p></li></ul>
+  
+  <pre> 
+  <i>From Command Mode</i>
+
+  <b>:5,10 co 105</b>   <i>Copy lines 5-10 to the line after 105</i>
+  
+  <b>:5,20 m $</b>      <i>Move lines 5-20 to end of file</i>
+  
+  <b>:7,300 d</b>       <i>Delete lines 7-300 (to buffer)</i>
+  </pre> 
+  
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed10">Searching for Text</a>
+  </li></h2>
+  
+  <pre>  <i>From Command Mode</i>
+
+  <b>/</b><i>text</i>   <i>Search forward (down) for text (text can include spaces</i>
+                      <i>and characters with special meanings.)</i>
+  
+  <b>?</b><i>text</i>   <i>Search backward (up) for text</i>
+  
+  <b>n</b>       <i>Repeat last search in the same direction</i>
+  
+  <b>N</b>       <i>Repeat last search in the opposite direction</i>
+  
+  <b>f</b><i>char</i>   <i>Search forward for a charcter on current line</i>
+  
+  <b>F</b><i>char</i>   <i>Search backward for a character on current line</i>
+  
+  <b>;</b>       <i>Repeat last character search in the same direction</i>
+  
+  <b>%</b>       <i>Find matching ( ), { }, or [ ]</i> 
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="intermed11">Substitutions</a>
+  </li></h2>
+  
+  <p>
+  The simplest way to do substitutions over a range of lines, or 
+  throughout the file, is to use the <b>s</b> colon command. 
+  The basic form of this command is the following:
+  </p><pre>     
+       <b>:</b><i>n1,n2</i><b>s/</b><i>old</i><b>/</b><i>new</i><b>/gc</b>
+
+       <i>n1 is the beginning line</i> 
+
+       <i>n2 is the ending line number</i>
+  
+       <b>s</b> <i>means to substitute text matching the pattern (old)</i> 
+                <i>with text specified by (new)</i>
+  
+       <b>g</b> <i>(global) is optional.  It indicates you want to substitute</i> 
+                <i>all occurrences on the indicated lines.  If you use</i> 
+                <b>g</b><i>, the editor substitutes only the first occurrence</i>
+                <i>on the indicated lines.</i>
+  
+       <b>c</b> <i>(confirm) is optional.  It indicates you want to confirm</i>
+                <i>each substitution before vi completes it.</i>
+  </pre>
+  <p></p>  
+  
+  <pre>  <i>From Command Mode</i>
+  
+  <b>:%s/old/new/g</b>     <i>Substitutes old with new throughout the file</i>
+  
+  <b>:.,$s/old/new/g</b>   <i>Substitutes old with new from the current</i>
+                           <i>cursor position to the end of the file</i>
+  
+  <b>:^,.s/old/new/g</b>   <i>Substitutes old with new from the beginning</i>
+                           <i>of the file to the current cursor position</i>
+  
+  <b>:&amp;</b>                 <i>Repeats the last substitute (:s) command</i>
+  </pre>
+  
+  </ol>
+
+<hr size="5">
+  
+<h2>
+<a name="advanced">C. ADVANCED VI</a>    
+</h2>
+  <ol>  
+  
+  <h2>
+  <li><a name="advanced1">Writing to and Reading from Files</a>
+  </li></h2>
+  
+  <pre>  <i>From Command Mode</i>
+
+  <b>:w</b> <i>file           Write current file to file</i>
+  
+  <b>:w&gt;&gt;</b><i>file          Append current file to file</i>
+  
+  <b>:5,10w</b> <i>file       Write lines 5 through 10 to file</i>
+  
+  <b>:5,10w&gt;&gt;</b><i>file      Append Lines 5 through 10 to file</i>
+  
+  <b>:r</b> <i>file           Read a copy of file into current file</i>
+  
+  <b>:!ls</b>              <i>See a list of files in your current directory</i>
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="advanced2">More About Options</a>
+  </li></h2>
+  
+  <pre>  <i>From Command Mode-within vi for the current file only</i>
+
+  <b>:set all</b>        <i>Display all options</i>
+  
+  <b>:set</b>            <i>Display current settings of options</i>
+  
+  <b>:set nooption</b>   <i>Unset option</i>
+  
+  <b>:set ai</b>         <i>Set Auto Indentation during text entry</i>
+  
+  <b>:set ic</b>         <i>Set Ignore Case during searches</i>
+  
+  <b>:set nu</b>         <i>Show line Numbers</i> 
+  
+  <b>:set sm</b>         <i>Show Matching ( or { when ) or } is entered</i>
+  
+  <b>:set wm=10</b>      <i>Set Wrap Margin 10 spaces from right edge of screen</i>
+  
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="advanced3">Customizing vi Sessions</a>
+  </li></h2>
+
+  <p>
+  Options can be set four ways:  
+  </p>
+  
+  <ol> 
+    <li>During a vi session
+      <pre>
+      <b>:set nu</b>
+
+      </pre>
+      <p></p>
+
+    </li><li>In a <b>.exrc</b> file in your home directory.
+      <pre>      <i>Sample contents of a .exrc file</i>
+
+        <b>set nu</b>
+        <b>set ai</b>
+        <b>set wm=10</b>
+
+      </pre>
+      <p></p>
+  
+     </li><li>In a <b>.exrc</b> file in a subdirectory.
+      <p></p>
+
+     </li><li>By setting the <b>EXINIT</b> environmental variable. 
+      <pre>      <i>Example of setting the EXINIT environmental variable</i>
+
+        <b>setenv EXINIT "set nu ai ic"</b>
+
+      </pre>
+      <p></p>
+
+      <p>
+      On the Uniform Access systems (Homer, Saul, Mead, Alcott),
+      the EXINIT environmental variable is used to set 
+      the shell within which the vi editor operates. Since the
+      EXINIT environmental variable, if it has been defined, 
+      overrides anything set by a <b>.exrc</b> file, customizing
+      vi on these computers requires redefining EXINIT.
+      For example, to add numbering and auto indent, you would 
+      take the following steps:
+      </p>
+	<ol>
+	  <li>Check to see what EXINIT is set to:
+	    <pre>	      % <b>printenv EXINIT</b>
+                set shell=/bin/csh
+            </pre>
+	    This response indicates that the shell is set to 
+	    the C shell. 
+	    <p></p>
+
+          </li><li>Reset EXINIT:
+	    <pre>	      % <b>setenv EXINIT "$EXINIT nu ai"</b>
+              % <b>printenv EXINIT</b>
+                set shell=/bin/csh nu ai
+            </pre>
+         </li></ol>
+
+  </li></ol> 
+ 
+  <b>Order of Precedence</b> 
+  <p></p>
+
+  <ol>
+    <li>If a <b>.exrc</b> file exists in the current directory,
+        vi reads it when beginning a session.
+        <p></p>
+
+    </li><li>If no <b>.exrc</b> file exists in the current directory,
+        vi checks the home directory for a <b>.exrc</b> file.
+        If such a file exists, vi reads it when beginning a session.
+        <p></p>
+
+    </li><li>If no <b>.exrc</b> file is found, vi uses its defaults.
+        <p></p>
+
+    </li><li>Values set in the <b>EXINIT</b> environmental variable
+        override any values set in a <b>.exrc</b> file.
+        <p></p>
+  </li></ol>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="advanced4">Creating a .exrc File</a>
+  </li></h2>
+  
+  <ol>
+  <li> At the system prompt, type: <tt><b>vi .exrc</b></tt>
+        <p></p>
+  
+  </li><li>  Type the following commands, each on a separate line:
+    <pre> 
+
+      <b>set ai</b>
+      <b>set ic</b>
+      <b>set nu</b>
+      <b>set wm=8</b>
+    </pre> 
+        <p></p>
+  
+  <p>
+  Do not leave blank lines at the beginning or end of the 
+  <b>.exrc</b> file. 
+  </p>
+  
+  </li><li>  When you are finished, type:  <b>&lt;Esc&gt; ZZ</b>   
+  </li></ol>
+  <p></p>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="advanced5">Abbreviations &amp; Mapping</a>
+  </li></h2>
+  
+  <p>
+  Abbreviations are text strings that automatically expand into
+  larger strings during insert mode.
+  </p><pre>  <i>From Command Mode</i>
+  
+  <b>:ab UW University of Washington</b>
+  </pre>
+  <p></p>
+  
+  <p>
+  Mapping defines a single key to execute a sequence of keystrokes
+  when the single key is pressed in command mode. 
+  In the following example,the @ key is mapped to replace the current
+  word with "University of Washington".  The &lt;Control&gt;v 
+  allows you to enter the &lt;Esc&gt; key into the command 
+  sequence. 
+  </p><pre>  <i>From Command Mode</i>
+  
+  <b>:map @ cwUniversity of Washington &lt;Control&gt;v &lt;Esc&gt; &lt;Return&gt;</b>
+  </pre>
+  <p></p>
+  
+  <p>
+  Mapping can also be used to call commands external to vi, such
+  as <b>sort</b> or <b>fmt</b>.
+  In the following example, the @ sign is mapped to the <b>sort</b>
+  command, so that the current paragraph (indicated by 
+  the }) will be sorted. 
+  The &lt;Control&gt;v allows you to enter the &lt;Return&gt; 
+  key into the command sequence. The second &lt;Return&gt; completes
+  the map command. 
+  </p><pre>  <i>From Command Mode</i>
+  
+  <b>:map @ !}sort &lt;Control&gt;v &lt;Return&gt; &lt;Return&gt;</b>
+  </pre>
+  <p></p>
+  
+  <p>
+  Note:  You can also put abbreviation and 
+  mapping commands in your .exrc file.
+  </p>
+  </ol> 
+
+<hr size="5">
+
+<h2>
+<a name="tips">D. TIPS AND TRICKS</a>     
+</h2>
+  <ol>  
+  <h2>
+  <li><a name="tips1">Making  vi an Editor in Pine</a>
+  </li></h2>
+  
+  <ol>
+  <li> In your home directory,  type:    <b>vi  .pinerc</b>
+       <p></p>
+  
+  </li><li> Find the line that reads
+       <pre>  
+       <b>editor=</b>
+       </pre>
+       <p></p>
+  
+  </li><li> Change it to read
+       <pre>  
+       <b>editor=vi</b>
+       </pre>
+       <p></p>
+  
+  
+  </li><li> Write and quit the file.  (<b>ZZ</b> or <b>:wq</b>)
+       <p></p>
+  
+  </li><li> Start Pine
+       <p></p>
+  
+  </li><li> In Pine in Compose mode, when you are ready to enter message
+       text, you will see there is an option available called <b>Alt Edit</b>.
+       (Alternate Editor). To evoke the Alternate Editor mode, 
+       press:  &lt;Cntrl&gt;&lt;Shift&gt;_
+       <p></p>
+
+       <p>
+       When finished editing in vi, exit vi and you will be returned
+       to the compose screen. 
+       </p>
+  </li></ol>
+  
+  
+  <hr>
+  
+  <h2>
+  <li><a name="tips2">vi-ing More Than One File</a>
+  </li></h2>
+ 
+  <p>
+  You can edit more than one file at a time with vi.
+  </p>
+
+  <pre>  <i>From The Unix Shell Prompt</i>
+
+  <b>vi file1 file2</b>   <i>vi two (or more) files at the same time</i>
+  
+  <i>From Command Mode</i>
+
+  <b>:n</b>               <i>Move to file2 from file1</i>
+  
+  <b>:rew</b>             <i>Rewind back to file1</i>
+  
+  <b>:e!</b>              <i>Restore original file1 file2 (start all over)</i>
+  
+  <b>ZZ</b>               <i>Save and quit file. (Must be done for each file.)</i> 
+  </pre>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="tips3">Moving the Left Margin</a>
+  </li></h2>
+  
+  <p>
+  When you print a file you may want the left margin moved to the 
+  right. This leaves room for a three-hole punch.
+  </p>
+  
+  <pre>  <i>From Command Mode</i>
+  
+  <b>:1,$&gt;</b>               <i>Move entire file 1 shift width (eight spaces)</i> 
+		      <i>to the right</i>
+  
+  <b>:1,$&lt;</b>               <i>Move entire file eight spaces to the left</i>
+  
+  <b>:%s/^/        /g</b>    <i>Insert any number of spaces at the</i>
+                      <i>beginning of each line in the entire file.</i>
+                      <i>Simply press the space bar the</i>
+                      <i>desired number of times.</i>
+  
+  <b>:20&gt;&gt;</b>                <i>Moves next 20 lines over 1 shift width.</i>
+  </pre>
+  <p></p>
+  
+  <hr>
+  
+  <h2>
+  <li><a name="tips4">Issuing Shell Commands From vi</a>
+  </li></h2>
+  
+  <p>
+  You can issue a single shell command 
+  while in the vi editor. For 
+  example, to list the files in your 
+  directory (ls), follow these steps: 
+  </p>
+  
+  <pre>  <i>From Command Mode</i>
+  
+  <b>:w</b>     <i>Write changes to your file (just in case).</i>
+  
+  <b>:!ls</b>   <i>List contents of your current directory on the screen.</i>
+  
+  <i>Press &lt;Return&gt; to return to vi.</i>
+  </pre>
+  
+  <p>
+  You can issue many shell commands by temporarily leaving the vi 
+  editor. 
+  </p><pre>  <i>From Command Mode</i>
+  
+  <b>:w</b>     <i>Write changes to your file.</i>
+  
+  <b>:sh</b>    <i>Return to the shell to enter a number of commands</i>
+         <i>without leaving vi.</i> 
+
+  <i>Press &lt;Control&gt;d to return to vi editing.</i>
+  </pre> 
+  
+  <hr>
+  
+  <h2>
+  <li><a name="tips5">Double Spacing a File</a>
+  </li></h2>
+ 
+  <p>
+  Occasionally, you may want a double spaced version of your file
+  for editing or review.
+  </p>
+
+  <pre>  <i>In Command Mode</i>
+ 
+  <b>:w original.backup</b> <i>Save a backup copy of the original file</i>
+
+  <b>:%! sed G</b>          <i>Double space the entire file.</i>
+  
+  <b>:1,5! sed G</b>        <i>Double space the lines from 1-5.</i>
+  </pre>
+  <p></p>
+</ol>
+
+<hr>
+
+<p>
+© Copyright 1996 University of Washington
+Computing &amp; Communications. <br>
+Permission to reprint or adapt sections from these class notes for
+noncommercial purposes is granted, provided that the source is
+acknowledged. Inquiries may be submitted to 
+<em>rells@cac.washington.edu</em>.
+</p>
+
+<p>
+Class notes URL: <em>http://weber.u.washington.edu/~rells/R110/</em><br>
+Last Modified: <i>February 24, 1997</i>
+</p>
+
+
+
+
+</body></html>

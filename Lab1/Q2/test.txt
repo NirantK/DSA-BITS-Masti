@@ -1,0 +1,1 @@
+The program works and copies contents of one file to another or displays them to screen if the output file is not specified. 

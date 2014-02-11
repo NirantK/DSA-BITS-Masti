@@ -1,0 +1,130 @@
+/*boatsail.h */
+#define NAME_MAX  30
+typedef char Name[NAME_MAX];
+typedef unsigned int ID;
+typedef unsigned int Hours;
+typedef unsigned int YrsExperience;
+typedef unsigned int BoatIndex;
+typedef unsigned int Size;
+
+//Boat details
+typedef struct {
+    ID bid;
+    Name boat;
+    Hours numSailed;
+} Boat;
+
+#define BOAT_MAX 100
+typedef Boat BoatList[BOAT_MAX];
+
+// Sailor details
+typedef struct {
+    ID sid;
+    Name sailor;
+    YrsExperience exp;
+    ID ownsbid;
+} Sailor;
+
+#define SAIL_MAX 100
+typedef Sailor SailorList[SAIL_MAX];
+
+ /******************** boatsailOps.h*/
+#include "boatsail.h"
+
+/** locateBoat - returns the position at which the boat with 
+ * 		id as boatid is found, or else return -666.
+ *Hint: BoatList is unordered. End Hint.
+ */
+extern int locateBoat(ID boatid, BoatList bl, Size s);
+
+/** PrintDetails - prints the details of Sailor and his boat.
+ */
+extern void PrintDetails(SailorList sl, Size sailors,
+                         BoatList bl, Size boats);
+/** sortSailors - sort Sailors on the basis of number of hours 
+ *                their boat has sailed. If their boats have 
+ *                sailed for same duration, then sort based on their
+ *                unique sailor id. 
+ */
+extern void sortSailors(SailorList sl, Size sailors,
+                        BoatList bl, Size boats);
+
+/***************************main.c*/
+ #include <stdio.h>
+#include "boatsailOps.h"
+
+int main()
+{
+    BoatList bl = { {1, "aa", 1},
+                    {2, "bb", 3},
+                    {3, "cc", 2},
+                    {4, "dd", 2}
+                  };
+    SailorList sl = { {1, "aa1", 1, 1},
+                    {2, "b2b", 3, 2},
+                    {4, "c3c", 12, 3},
+                    {3, "d4d", 8, 4}
+                  };
+
+    PrintDetails(sl, 4, bl, 4);
+    printf("\n Sorting ... ");
+    sortSailors(sl, 4, bl, 4);
+    printf("\n");
+    PrintDetails(sl, 4, bl, 4);
+    printf("\n");
+}
+
+ 
+ /* boatsailOps.c*/
+#include<stdio.h>
+#include "boatsail.h"
+
+
+/** locateBoat - returns the position at which the boat with 
+ * 		id as boatid is found, or else return -666.
+ */
+int locateBoat(ID boatid, BoatList bl, Size s)      
+{
+	/*
+	 * write your code here
+	 *
+	 */
+}
+
+/** PrintDetails - prints the details of Sailor and his boat.
+ */
+void PrintDetails(SailorList sl, Size sailors, BoatList bl, Size boats)
+{
+ 	/*
+	 * write your code here
+	 *
+	 * This function uses locateBoat.
+	 */
+}
+
+
+
+void insertSailor(Sailor s, SailorList sl, Size sailors,
+                  BoatList bl, Size boats) 
+{
+  	/*
+	 * write your code here
+	 *
+	 * This function uses locateBoat.
+	 */
+}
+
+
+/** sortSailors - sort Sailors on the basis of number of hours 
+ *                their boat has sailed. If their boats have 
+ *                sailed for same duration, then sort based on their
+ *                unique sailor id. 
+ */
+void sortSailors(SailorList sl, Size sailors, BoatList bl, Size boats) //6M
+{
+   	/*
+	 * write your code here
+	 *
+	 * This function uses insertSailor.
+	 */
+}

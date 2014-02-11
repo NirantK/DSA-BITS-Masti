@@ -1,0 +1,522 @@
+
+<!-- saved from url=(0044)http://www.cs.colostate.edu/helpdocs/vi.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+Basic vi Commands
+</title>
+<style type="text/css"></style></head>
+
+<body background="./Basic vi Commands_files/csucs.gif" text="#000000" vlink="#0000a0" link="#0000ff" alink="#ff0000" bgcolor="#c0c0ff">
+         
+<table width="98%">
+<tbody><tr><td align="LEFT">
+<img src="./Basic vi Commands_files/csbanner7.gif" alt="Colorado State University ">
+</td><td align="RIGHT">
+<h1 align="RIGHT"> <font color="NAVY">
+	Basic vi Commands
+</font></h1>
+</td></tr><tr>
+</tr></tbody></table>
+<hr noshade="" color="NAVY">
+<hr noshade="" color="NAVY">
+<h3>What is <tt>vi</tt>?</h3>
+<dl>
+<dd>The default editor that comes with the
+UNIX operating system is called <tt>vi</tt> (<b>vi</b>sual editor).
+[Alternate editors for UNIX environments include <tt>pico</tt>
+and <tt>emacs</tt>, a product of GNU.]
+<p>
+</p></dd><dd>The UNIX <tt>vi</tt> editor is a full screen editor and has two modes of 
+operation: 
+	<ol>
+	<li> <i>Command mode</i> commands
+		which cause action to be taken on the file, and 
+	</li><li><i>Insert mode</i> in which entered text is inserted into the file.
+	</li></ol>
+In the command mode, every character typed is a command that does
+something to the text file being edited;  a character typed in the
+command mode may even cause the <tt>vi</tt> editor to enter the
+insert mode.
+In the insert mode, every character typed is added to the text
+in the file;  pressing the <tt>&lt;Esc&gt;</tt> (<i>Escape</i>) key
+turns off the Insert mode.
+<p>
+</p></dd><dd>While there are a number of <tt>vi</tt> commands, just a handful
+of these is usually sufficient for beginning <tt>vi</tt> users.
+To assist such users, this Web page
+contains a sampling of basic <tt>vi</tt> commands. 
+The most basic and useful commands are marked with an asterisk
+(<tt>*</tt> or star) in the tables below.
+With practice, these commands should become automatic.
+<p>
+</p></dd><dd><b>NOTE:</b>  Both UNIX and <tt>vi</tt> are <b>case-sensitive</b>.
+Be sure not to use a capital letter in place of a lowercase
+letter;  the results will not be what you expect.
+</dd></dl>
+<p></p><hr noshade="" color="NAVY"><p>
+</p><h3>To Get Into and Out Of <tt>vi</tt></h3>
+<p>
+</p><h4>To Start <tt>vi</tt></h4>
+<dl>
+<p>
+</p><dd>To use <tt>vi</tt> on a file, type in <tt>vi filename</tt>.  If
+the file named <tt>filename</tt> exists, then the first page (or screen)
+of the file will be displayed; if the file does not exist, then an
+empty file and screen are created into which you may enter text.
+</dd></dl>
+<p>
+</p><center>
+<table border="">
+<tbody><tr><th> *
+</th><th align="LEFT"><tt>vi filename</tt>
+	</th><td> <i>edit <tt>filename</tt> starting at line 1</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>vi -r filename</tt>
+	</th><td> <i>recover <tt>filename</tt> that was being
+		edited when system crashed</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p>
+</p><h4>To Exit <tt>vi</tt></h4>
+<p>
+</p><dl>
+<dd>Usually the new or modified file is saved when you
+leave <tt>vi</tt>.  However, it is also possible to quit
+<tt>vi</tt> without saving the file.
+<p>
+</p></dd><dd><b>Note:</b> The cursor moves to bottom of screen whenever a
+colon (<tt>:</tt>) is typed.  This type of command is completed by
+hitting the <tt>&lt;Return&gt;</tt> (or <tt>&lt;Enter&gt;</tt>) key.
+</dd></dl>
+<p>
+</p><center>
+<table border="">
+<tbody><tr>
+<th> *
+</th><th align="LEFT"><tt>:x</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>quit <tt>vi</tt>, writing out modified file
+		to file named in original invocation</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>:wq</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>quit <tt>vi</tt>, writing out modified file
+		to file named in original invocation</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>:q</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>quit (or exit) <tt>vi</tt></i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT"><tt>:q!</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>quit <tt>vi</tt> even though latest changes
+		have not been saved for this <tt>vi</tt> call</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p></p><hr noshade="" color="NAVY"><p>
+</p><h3>Moving the Cursor</h3>
+<dl>
+<p>
+</p><dd>Unlike many of the PC and MacIntosh editors, <b>the mouse does not
+move the cursor</b> within the <tt>vi</tt> editor screen (or window). 
+You must use the
+the key commands listed below.  On some UNIX platforms, the arrow keys
+may be used as well;  however, since <tt>vi</tt> was designed with
+the Qwerty keyboard (containing no arrow keys) in mind, the arrow
+keys sometimes produce strange effects in <tt>vi</tt> and should
+be avoided.
+<p>
+</p></dd><dd>If you go back and forth between a PC environment and a UNIX
+environment, you may find that this dissimilarity in methods for
+cursor movement is the most frustrating difference between the two.
+<p>
+</p></dd><dd>In the table below, the symbol <tt>^</tt> before a letter means
+that the <tt>&lt;Ctrl&gt;</tt> key should be held down while the
+letter key is pressed.
+</dd></dl>
+<p>
+</p><center>
+<table border="">
+<tbody><tr><th> *
+</th><th align="LEFT"><tt>j</tt> <i>or</i> <tt>&lt;Return&gt;</tt>
+		<br> &nbsp; [<i>or</i> down-arrow]
+	</th><td> <i>move cursor down one line</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT"><tt>k</tt> [<i>or</i> up-arrow]
+	</th><td> <i>move cursor up one line</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT"><tt>h</tt> <i>or</i> <tt>&lt;Backspace&gt;</tt>
+		<br> &nbsp; [<i>or</i> left-arrow]
+	</th><td> <i>move cursor left one character</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT"><tt>l</tt> <i>or</i> <tt>&lt;Space&gt;</tt>
+		<br> &nbsp; [<i>or</i> right-arrow]
+	</th><td> <i>move cursor right one character</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT" nowrap=""><tt>0</tt> (zero)
+	</th><td> <i>move cursor to start of current line
+		(the one with the cursor)</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT" nowrap=""><tt>$</tt>
+	</th><td><i>move cursor to end of current line</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>w</tt>
+	</th><td><i>move cursor to beginning of next word</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>b</tt>
+	</th><td><i>move cursor back to beginning of preceding word</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>:0</tt><tt>&lt;Return&gt; <i>or</i> 1G</tt>
+	</th><td> <i>move cursor to first line in file</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>:n</tt><tt>&lt;Return&gt; <i>or</i> nG</tt>
+	</th><td> <i>move cursor to line <tt>n</tt></i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>:$</tt><tt>&lt;Return&gt; <i>or</i> G</tt>
+	</th><td> <i> move cursor to last line in file</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p></p><hr noshade="" color="NAVY"><p>
+</p><h3>Screen Manipulation</h3>
+<dl>
+<p>
+</p><dd>The following commands allow 
+the <tt>vi</tt> editor screen (or window) to
+move up or down several lines and to be refreshed.
+</dd></dl>
+<p>
+</p><center>
+<table border="">
+<tbody><tr><th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>^f</tt>
+	</th><td> <i>move forward one screen</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>^b</tt>
+	</th><td> <i>move backward one screen</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>^d</tt>
+	</th><td> <i>move down (forward) one half screen</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>^u</tt>
+	</th><td> <i>move up (back) one half screen</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>^l</tt>
+	</th><td> <i>redraws the screen</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>^r</tt>
+	</th><td> <i>redraws the screen, removing deleted lines</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p></p><hr noshade="" color="NAVY"><p>
+</p><h3>Adding, Changing, and Deleting Text</h3>
+<dl>
+<p>
+</p><dd>Unlike PC editors, you cannot replace or delete text by highlighting it with
+the mouse.  Instead use the commands in the following tables.  
+<p>
+</p></dd><dd>Perhaps the most important command is the one that allows you
+to back up and <i>undo</i> your last action.  Unfortunately, this
+command acts like a toggle, undoing and redoing your most recent
+action.  You cannot go back more than one step.
+</dd></dl>
+<p>
+</p><center>
+<table border="">
+<tbody><tr><th> *
+</th><th align="LEFT" nowrap=""><tt>u</tt>
+	</th><td> <i>UNDO WHATEVER YOU JUST DID; a simple toggle</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<dl>
+<p>
+</p><dd>The main purpose of an editor is to create, add, or modify text
+for a file. 
+<p>
+</p></dd></dl>
+<h4>Inserting or Adding Text</h4>
+<dl>
+<p>
+</p><dd> The following commands allow you to insert and add text.
+Each of these commands puts the <tt>vi</tt> editor into insert mode;
+thus, the <tt>&lt;Esc&gt;</tt> key must be pressed to terminate the
+entry of text and to put the <tt>vi</tt> editor back into command mode.
+<p>
+</p></dd></dl>
+<center>
+<table border="">
+<tbody><tr><th> *
+</th><th align="LEFT" nowrap=""><tt>i</tt>
+	</th><td> <i>insert text before cursor, until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>I</tt>
+	</th><td> <i>insert text at beginning of current line,
+		until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT" nowrap=""><tt>a</tt>
+	</th><td> <i>append text after cursor, until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>A</tt>
+	</th><td> <i>append text to end of current line,
+		until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT" nowrap=""><tt>o</tt>
+	</th><td> <i>open and put text in a new line below current line,
+		until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT" nowrap=""><tt>O</tt>
+	</th><td> <i>open and put text in a new line above current line,
+		until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p>
+</p><h4>Changing Text</h4>
+<dl>
+<p>
+</p><dd>The following commands allow you to modify text.
+<p>
+</p></dd></dl>
+<center>
+<table border="">
+<tbody><tr><th> *
+</th><th align="LEFT" nowrap=""><tt>r</tt>
+	</th><td> <i> replace single character under cursor
+		(no <tt>&lt;Esc&gt;</tt> needed)</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>R</tt>
+	</th><td> <i>replace characters, starting with current cursor position,
+		until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>cw</tt>
+	</th><td> <i>change the current word with new text,
+		<br>starting with the
+		character under cursor, until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>cNw</tt>
+	</th><td> <i>change <tt>N</tt> words beginning with character under cursor,
+		until <tt>&lt;Esc&gt;</tt> hit;
+		<br> &nbsp; e.g., <tt>c5w</tt> changes 5 words</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>C</tt>
+	</th><td> <i>change (replace) the characters in the current line,
+		until <tt>&lt;Esc&gt;</tt> hit</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>cc</tt>
+	</th><td> <i>change (replace) the entire current line, 
+		stopping when <tt>&lt;Esc&gt;</tt> is hit</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>Ncc</tt> <i>or</i> <tt>cNc</tt>
+	</th><td> <i>change (replace) the next N lines,
+		starting with the current line,<br>
+		stopping when <tt>&lt;Esc&gt;</tt> is hit</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p>
+</p><h4>Deleting Text</h4>
+<dl>
+<p>
+</p><dd>The following commands allow you to delete text.
+<p>
+</p></dd></dl>
+<center>
+<table border="">
+<tbody><tr><th> *
+</th><th align="LEFT" nowrap=""><tt>x</tt>
+	</th><td> <i>delete single character under cursor</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>Nx</tt>
+	</th><td> <i>delete N characters, starting with character under cursor</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>dw</tt>
+	</th><td> <i>delete the single word beginning with character under cursor</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>dNw</tt>
+	</th><td> <i>delete <tt>N</tt> words beginning with character under cursor;
+		<br> &nbsp; e.g., <tt>d5w</tt> deletes 5 words</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>D</tt>
+	</th><td> <i>delete the remainder of the line,
+		starting with current cursor position</i>
+</td></tr><tr>
+<th> *
+</th><th align="LEFT" nowrap=""><tt>dd</tt>
+	</th><td> <i>delete entire current line</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>Ndd</tt> <i>or</i> <tt>dNd</tt>
+	</th><td> <i>delete <tt>N</tt> lines, beginning with the current line;
+		<br> &nbsp; e.g., <tt>5dd</tt> deletes 5 lines</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p>
+</p><h4>Cutting and Pasting Text</h4>
+<dl>
+<p>
+</p><dd>The following commands allow you to copy and paste text.
+<p>
+</p></dd></dl>
+<center>
+<table border="">
+<tbody><tr><th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>yy</tt>
+	</th><td> <i>copy (yank, cut) the current line into the buffer</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>Nyy</tt> <i>or</i> <tt>yNy</tt>
+	</th><td> <i>copy (yank, cut) the next N lines, including the current line,
+		into the buffer</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>p</tt>
+	</th><td> <i>put (paste) the line(s) in the buffer into the
+		text after the current line</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p></p><hr noshade="" color="NAVY"><p>
+</p><h3>Other Commands</h3>
+<p>
+</p><h4>Searching Text</h4>
+<dl>
+<p>
+</p><dd> A common occurrence in text editing is to replace one word or
+phase by another.  To locate instances of particular sets of characters
+(or strings), use the following commands.
+<p>
+</p></dd></dl>
+<center>
+<table border="">
+<tbody><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>/string</tt>
+	</th><td> <i> search forward for occurrence of <tt>string</tt> in text<i>
+</i></i></td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>?string</tt>
+	</th><td> <i> search backward for occurrence of <tt>string</tt> in text<i>
+</i></i></td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>n</tt>
+	</th><td> <i> move to next occurrence of search string</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>N</tt>
+	</th><td> <i> move to next occurrence of search string in opposite
+		direction</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p>
+</p><h4>Determining Line Numbers</h4>
+<dl>
+<p>
+</p><dd> Being able to determine the line number of the current line
+or the total number of lines in the file being edited is sometimes
+useful.
+<p>
+</p></dd></dl>
+<center>
+<table border="">
+<tbody><tr><th> &nbsp;
+</th><th align="LEFT"><tt>:.=</tt>
+	</th><td> <i> returns line number of current line at bottom of screen<i>
+</i></i></td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT"><tt>:=</tt>
+	</th><td> <i> returns the total number of lines at bottom of screen<i>
+</i></i></td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>^g</tt>
+	</th><td> <i>provides the current line number, along with the total
+		number of lines,<br>
+		in the file at the bottom of the screen</i>
+</td></tr><tr>
+</tr></tbody></table>
+</center>
+<p></p><hr noshade="" color="NAVY"><p>
+</p><h3>Saving and Reading Files</h3>
+<p>
+These commands permit you to input and output files other
+than the named file with which you are currently working.
+</p><p>
+</p><center>
+<table border="">
+<tbody><tr><th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>:r filename</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i> read file named <tt>filename</tt> and insert after
+		current line
+		<br>(the line with cursor)</i>
+</td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>:w</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>write current contents to file named in original 
+		<tt>vi</tt> call
+</i></td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>:w newfile</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>write current contents to a new file named <tt>newfile</tt>
+</i></td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>:12,35w smallfile</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>write the contents of the lines numbered 12 through 35
+		to a new file named <tt>smallfile</tt>
+</i></td></tr><tr>
+<th> &nbsp;
+</th><th align="LEFT" nowrap=""><tt>:w! prevfile</tt><tt>&lt;Return&gt;</tt>
+	</th><td> <i>write current contents over a pre-existing file
+		named <tt>prevfile</tt>
+</i></td></tr><tr>
+</tr></tbody></table>
+</center>
+<p> </p><hr noshade="" color="NAVY">
+<font size="2">
+<hr noshade="" color="NAVY">
+<b>Comments:</b>
+<img align="CENTER" src="./Basic vi Commands_files/address85.gif">
+<!--
+<BR>
+<B>Copyright &#169 1998: Colorado State University, CS Department.</B>
+All rights reserved.
+-->
+<hr noshade="" color="NAVY">
+
+
+
+</font></body></html>
