@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-c -I -Wall
+CFLAGS=-c -I. -Wall
 LDFLAGS=
-SOURCES=vector.h vector.c
+SOURCES=create.c merge.c print.c writefile.c main.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=exec
 
@@ -14,5 +14,5 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf *o *exe
+	rm -rf *o *exe *~ exec *.gch
 
