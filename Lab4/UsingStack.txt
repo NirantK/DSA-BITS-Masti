@@ -1,0 +1,49 @@
+Using the stack ADT:
+--------------------
+
+1) Creating stack :
+   ---------------
+	Declare your stack of type 'Stack' and initialize it by calling newStack() as follows:
+	Stack st=newStack();
+
+2) Push: 
+   ----
+   	int data=5;
+   	push (st,data);
+	
+	
+3) Pop:
+   ---
+   	int data;
+   	pop(st,&data);
+	
+	The variable 'data' contains valid content after popping only if the pop function returns TRUE. Before consuming data, verify if the pop has returned TRUE. You can do it as follows: 
+	
+	if (pop(st,&data)) 
+		{
+			consume data; 
+		}
+
+4) Top:
+   ---
+   	int data;
+   	top(st,&data);
+	
+	The variable 'data' contains the top mose element in the stack. The name 'data' contain valid content only if the top function returns TRUE. Before consuming data, verify if the top has returned TRUE. You can do it as follows: 
+	
+	if (top(st,&data)) 
+		{
+			consume data; 
+		}
+
+5) Size of the stack:
+   -----------------
+   
+   Stack st=newStack();
+   .....
+   
+   size(st);
+   
+   This function returns the number of elements in the stack. Returns -1 otherwise.
+
+
