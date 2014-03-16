@@ -1,0 +1,13 @@
+Step 1: Prepare the input data/text files
+drivers.txt: <7 Digit UID>, < 7 Digit License>
+owners.txt: <7 Digit UID>, <4 digit Vehicle No>
+offences.txt: < 7 Digit License>, <Absolute value of Penalty>
+************************************************************************************************************************************
+Step2: Implement as linked lists amd corresponding read, access and modify fucntions. 
+
+Step2 A: Design ADT step - Write relevant data structures. 
+
+************************************************************************************************************************************
+Step3: Implement Vehicles and drivers as Open addressing hash table.  Implement corresponding read, access and modify fucntions. 
+************************************************************************************************************************************
+Step4: 

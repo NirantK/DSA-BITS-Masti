@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-c -I. -Wall
+CFLAGS=-c - Wall
 LDFLAGS=
-SOURCES=create.c print.c writefile.c main.c
+SOURCES=driver.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=exec
 
