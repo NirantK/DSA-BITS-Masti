@@ -1,40 +1,6 @@
+/*Code Credits: Nirant Kasliwal*/
+/*Parts of the code, pertaining to hash table stats, print_time and grow_table have been used from open source under WTFPL on GitHub */
 #include "offense.h"
-/* Function prototypes  */
-
-driver populateDrivers(FILE *source);
-
-/* Hash table ADT functions */
-driver insert_word(driver word_list, int uid, int license, int penalty, int *used);
-driver search_list(driver word_list, int license, int *count) ;
-unsigned int hash(int data, int tbl_size);
-driver search_table(table *hash_table, int license, int *count);
-table *grow_table(table *hash_table);
-void destroy(driver word_list);
-driver create_node(int uid, int license, int penalty);
-void *gcalloc( int number, int size);
-driver makeRevokeList(FILE *source, table *hash_table, int* count);
-
-/* Various helper functions */
-int ask_user(void);
-table *build_table( FILE *input);
-list *build_list( FILE *input);
-void print_result(driver result, int count);
-char *return_word(char *word, FILE *input);
-void print_stats(table *hash_table);
-double print_time( clock_t time);
-
-void printDriversList(driver node)
-{
-	if(node->next!=NULL){
-		node = node -> next;
-	}
-  while(node!=NULL)
-  {
-   	printf("%d,%d", node->uid, node->lic);
-	printf("\n");
-   node = node->next;
-  }
-}
 
 int main(int argc, const char *argv[]) 
 {
@@ -43,8 +9,8 @@ int main(int argc, const char *argv[])
     driver result;   			//node pointer to store result
     table *hash_table;          //Hash table initialization
     clock_t time;               //Variable for program running time calculations
-    int count;                  //Number of comparisons made
-    int license;
+    int count, license;                  //Number of comparisons made
+
     /* Checking for correct command-line arguments */
     if (argc != 3 ) 
     {
@@ -57,11 +23,15 @@ int main(int argc, const char *argv[])
         exit(1);
     }
     
+
+    // Build Linked List and measure Time
     time = clock();                     //initializing zero time value
     word_list = populateDrivers(input);      //parsing input file into a linked list
     printf("Storing text in a list took %6.10f s\n", print_time(time));
     time = clock();                     //initializing zero time value
     fclose(input);                      //closing and reopening the
+
+    // Build Hash Table and measure Time
     input = fopen(argv[1], "r");        //text file for reading into a hash table
     hash_table = build_table(input);    //parsing input file into a hash table
     printf("Storing text in a hash table took %6.4f s\n", print_time(time));
@@ -69,8 +39,8 @@ int main(int argc, const char *argv[])
     printf("\n");
     fclose(input);
 
-    if ( (input = fopen(argv[2], "r")) == NULL)
-    {
+    // Prepare revokeList
+    if ( (input = fopen(argv[2], "r")) == NULL){
         printf("Unable to open %s\n", argv[1]);
         exit(1);
     }
@@ -82,19 +52,17 @@ int main(int argc, const char *argv[])
 //     do {                
         // printf("Enter a license to search:  ");
         // scanf("%d", &license);
-// #ifdef MAKE_LIST
         // printf("list:\n");
         // time = clock();
         // result = search_list(word_list, license, &count);
         // print_result(result, count);
         // printf(", took %4.5f s\n", print_time(time));
-// #endif
         // printf("hash table:\n");
         // time =  clock();
         // result = search_table(hash_table, license, &count);
         // print_result(result, count);
         // printf(", took %4.5f s\n", print_time(time));
-//     } while( ask_user() );
+//     } while( ask_user() ); // ask_user() not implemented, you may do if you feel the need to
     
     
     return 0;
@@ -144,10 +112,7 @@ unsigned int hash(int data, int tbl_size){return data % tbl_size;}
 driver insert_word(driver word_list, int uid, int license, int penalty, int *used) 
 {
     /*  Function for inserting word to a list
-     *  Accepts pointer to a list, string and pointer to int for storing number of different words
-     *  Returns head of a list
-     *  Function increments the count if string is already in a list or creates a new node.
-     */
+     *  Returns head of a list     */
     int count;              //dummy variable required by search_list()
     driver node = create_node(uid, license, penalty);
 	node->next = word_list;
@@ -160,7 +125,7 @@ table *grow_table(table *hash_table)
     /*  Resizes hash table.
      *  Requires hash table as an argument and returns pointer to bigger hash table
      *
-     *  It first allocates memory to a table two times bigger and then rehashes all 
+     *  It first allocates memory to a table GROWTH times bigger and then rehashes all 
      *  the previous values into a new one. Memory allocated for old table is freed
      */
     
@@ -181,7 +146,7 @@ table *grow_table(table *hash_table)
             while( bucket != NULL) 
             {
                 h = hash(bucket->lic, new_table->size);    //Rehashing values for new table size
-                node = create_node(bucket->uid, bucket->lic, bucket->penalty);           //Creating a list node from a string
+                node = create_node(bucket->uid, bucket->lic, bucket->penalty);           //Creating a list node from uid, license, and penalty
                 node->next = new_table->data[h];            //Connecting node with the list
                 new_table->data[h] = node;                  //Replacing pointer to the list head
                 bucket = bucket->next;                      //Advancing through the list 
@@ -194,11 +159,7 @@ table *grow_table(table *hash_table)
     return new_table;
 }
 
-/*  Searches hash table for a string.
- *  Accepts pointer to hash table, character array and pointer to variable 
- *  storing comparisons executed
- *  Returns pointer to result list structure
- */
+/*  Searches hash table, Returns pointer to result list structure */
 driver search_table(table *hash_table, int license, int *count)
 {
     unsigned int h = hash(license, hash_table->size);            //hash value calculation
@@ -208,10 +169,7 @@ driver search_table(table *hash_table, int license, int *count)
 
 driver search_list(driver word_list, int license, int *count) 
 {
-    /*  List searching function
-     *  Accepts pointer to a list, string to search and a pointer to int for storing 
-     *  number of comparisons made
-     *  Funtion returns NULL if word is not found and pointer to list structure if it's found.
+    /*  List searching function, Funtion returns NULL if word is not found and a driver pointer if it's found.
      */
      
     *count = 0;
@@ -306,10 +264,7 @@ void print_stats(table *hash_table)
 
 driver create_node(int uid, int license, int penalty)
 {
-    /*  Function creates new instance of list variable
-     *  Accepts a string and returns pointer to list variable storing that string
-     */
-     
+    // Function creates new instance of driver variable 
     driver node = gcalloc(1, sizeof(drvr));
     node->uid = uid;
     node->lic= license;
@@ -429,4 +384,17 @@ driver makeRevokeList(FILE *source, table *hash_table, int* count){
 		}
 	}
 	return head;
+}
+
+void printDriversList(driver node)
+{
+    if(node->next!=NULL){
+        node = node -> next;
+    }
+  while(node!=NULL)
+  {
+    printf("%d,%d", node->uid, node->lic);
+    printf("\n");
+   node = node->next;
+  }
 }

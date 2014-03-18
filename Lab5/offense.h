@@ -30,20 +30,7 @@ typedef struct offenseNode
 	offense next;
 } ofnc;
 
-owner populateVehicles(FILE *source);
-driver populateDrivers(FILE *source);
-void printVehicleList(owner node);
-void printDriversList(driver node);
-void printOffensesList(offense node);
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------*/
-#include <stdio.h>          //File and termininal input/output
-#include <stdlib.h>         //General utilities
-#include <string.h>         //String handling functions
-
-/* 
- *  Hash table characteristics.
- */
+/* Hash table characteristics.  */
 
 /*  Initial table size. If we know the number of elements we will have, by setting this number to 
  *  something reasonably big, it is possible to disable the automatic resizing. This could lead to 
@@ -91,3 +78,29 @@ typedef struct table
     int size; // table size  (m)
     driver *data;
 } table;
+
+owner populateVehicles(FILE *source);
+driver populateDrivers(FILE *source);
+void printVehicleList(owner node);
+void printDriversList(driver node);
+void printOffensesList(offense node);
+
+/* Hash table ADT functions */
+driver insert_word(driver word_list, int uid, int license, int penalty, int *used);
+driver search_list(driver word_list, int license, int *count) ;
+unsigned int hash(int data, int tbl_size);
+driver search_table(table *hash_table, int license, int *count);
+table *grow_table(table *hash_table);
+void destroy(driver word_list);
+driver create_node(int uid, int license, int penalty);
+void *gcalloc( int number, int size);
+driver makeRevokeList(FILE *source, table *hash_table, int* count);
+
+/* Various helper functions */
+int ask_user(void);
+table *build_table( FILE *input);
+list *build_list( FILE *input);
+void print_result(driver result, int count);
+char *return_word(char *word, FILE *input);
+void print_stats(table *hash_table);
+double print_time( clock_t time);
