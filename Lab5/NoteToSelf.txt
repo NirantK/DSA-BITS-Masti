@@ -1,13 +1,48 @@
 Step 1: Prepare the input data/text files
+
+These have 10k or 20k tuples each. 
 drivers.txt: <7 Digit UID>, < 7 Digit License>
 owners.txt: <7 Digit UID>, <4 digit Vehicle No>
 offences.txt: < 7 Digit License>, <Absolute value of Penalty>
-************************************************************************************************************************************
-Step2: Implement as linked lists amd corresponding read, access and modify fucntions. 
 
-Step2 A: Design ADT step - Write relevant data structures. 
+Prepare smaller files which satisfy test cases, called Xdrivers.txt, Xowners.txt, Xoffenses.txt. These will have 10 or 20 tuples each
+
+Test Cases: 
+1. Licenses with multiple penalty. [Input prepared.]
+2. UID with more than one vehicles. 
+3. Owner and driver are different persons / different UID. [Cannot build relation.]
+In this case, owner gets 0.5*floor(penalty) given to driver
+If they are both the same, he gets only the penalty given to driver.
+4. Licenses with penalty less than 10. [Input prepared.]
+5. Licenses that have UID, but no vehicles. [Input prepared.]
 
 ************************************************************************************************************************************
-Step3: Implement Vehicles and drivers as Open addressing hash table.  Implement corresponding read, access and modify fucntions. 
+Step2: Implement vehicles and drivers as linked lists. 
+
+Step 2A: Design ADT step - Write relevant data structures. Done.  
+Revision#1: Added penalty to driver node itself.
+Step 2B: Read from file into linked list. Ensure that the list is insert-sorted. Done. 
+Step 2C: Implement search in the list. 
+
 ************************************************************************************************************************************
-Step4: 
+Step3: Implement Drivers as hash table. 
+Hash table is implemented as a dynamic array of structures. 
+
+Step 3A: Use chaining for collision resolution. Done. 
+Step 3B: Implement search in hash table, make use of search list designed in previous steps. Done. 
+
+************************************************************************************************************************************
+Step4: Revoke Operations
+
+Step 4A: Read license, penalty tuple from the file. 
+For each tuple, update corresponding value in the hash table of driver
+For each tuple, check if the new value of penalty is >=10;
+If yes: add to a revokeList (which is a list of driver nodes).
+
+Step 4B: Write the revokeList to Standard output and file output.
+
+revokeList can not be a hashtable for our purposes. Why? 
+1. We have to traverse the entire revokeList to write it to file. 
+2. It will act as a sorted dictionary, which is more suited to a linked list implementation rather than a hashtable implementation.
+
+************************************************************************************************************************************

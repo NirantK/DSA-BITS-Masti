@@ -5,56 +5,50 @@ int main()
 	// int a = 9253298;
 	// printf("%d\n", a);
 	FILE *ownerSource = fopen("owners.txt", "r");
-	ownr *olist = (ownr*)malloc(sizeof(ownr));
-	populateVehicles(olist, ownerSource);
+	owner o= populateVehicles(ownerSource);
+	printVehicleList(o);
+	printf("--------------------------------------------------\n");
 	FILE *driverSource = fopen("drivers.txt", "r");
-	drvr *list = (drvr*)malloc(sizeof(drvr));
-	populateDrivers(list, driverSource);
+	driver d = populateDrivers(driverSource);
+	printDriversList(d);
 	return 0;
 }
 
-void populateVehicles(ownr *list, FILE *source){
-	int i;
-
-	// Check if source exists
+void makeRevokeList(offense head, FILE *source)
+{
+		// Check if source exists
 	if(source==NULL){
 	printf("Input file not found. Exiting.");
-	for(i=99999999;i>0;i--);
-	exit(1);
-	}
-
-	printf("Unsorted populateVehicles\n");
-	// Read file into a linked list
-	int uid, vehno;
-	// while(fgets(parsedLine,15,source)!=NULL)
-	while(fscanf(source, "%d,%d", &uid,&vehno)!=EOF){
-		list->next=(ownr*)malloc(sizeof(ownr));
-		list->uid = uid;
-		list->vno = vehno;
-		printf("%d,%d", list->uid, list->vno);
-		printf("\n");
-	}
-	printf("--------------------------------------------------\n");
-}
-
-void populateDrivers(drvr *list, FILE *source){
-	int i;
-
-	// Check if source exists
-	if(source==NULL){
-	printf("Input file not found. Exiting.");
-	for(i=99999999;i>0;i--);
 	exit(1);
 	}
 
 	// Read file into a linked list
-	int uid, license;
-	// while(fgets(parsedLine,15,source)!=NULL)
-	while(fscanf(source, "%d,%d", &uid,&license)!=EOF){
-		list->next=(drvr*)malloc(sizeof(drvr));
-		list->uid = uid;
-		list->lic = license;
-		printf("%d,%d", list->uid, list->lic);
-		printf("\n");
+	int license, penalty;
+	char c;
+	// fscanf(source, "%d%c%d\n", &uid,&c,&license);
+	// head ->uid = uid;
+	// head ->lic = license;
+	while(fscanf(source, "%d%c%d\n", &license,&c,&penalty)!=EOF){
+		// Create a new node and store data in it
+		offense newNode =(offense)malloc(sizeof(ofnc));
+		newNode->lic = license;
+		newNode->pen = penalty;
+
+		// Find the first node larger than the newNode
+		ofnc *ptr = head;
+		while(ptr->next!=NULL && ptr->next->lic<license){
+			ptr = ptr->next;
+		}
+		if (ptr->next==NULL){
+			newNode->next = NULL;
+			// printf("poop\n");
+			ptr->next = newNode;				
+		}
+		else{
+			newNode->next = ptr->next;
+			ptr->next = newNode;
+		}
 	}
+	printOffensesList(head);
 }
+

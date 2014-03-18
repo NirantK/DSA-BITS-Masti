@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-c - Wall
+CFLAGS=-c -g -Wall
 LDFLAGS=
-SOURCES=driver.c
+SOURCES=driver.c populateVehicles.c populateDrivers.c printList.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=exec
 
