@@ -12,8 +12,7 @@ int main(int argc, const char *argv[])
     int count, license;                  //Number of comparisons made
 
     /* Checking for correct command-line arguments */
-    if (argc != 3 ) 
-    {
+    if (argc != 3 ) {
         printf("Program requires two text files as arguments!\n");
         exit(1);
     }
