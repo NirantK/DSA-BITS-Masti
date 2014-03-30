@@ -25,7 +25,5 @@ struct __bookNode
 	struct __bookNode *left, *right;
 };
 
-
-
 #define TRUE 1
 #define FALSE 0

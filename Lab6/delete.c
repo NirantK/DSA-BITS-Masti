@@ -1,4 +1,5 @@
 #include "BSTdef.h"
+#include "BSTOps.h"
 void deleteNode(node p, book b){
 
     if(findNode(p, b)==0){

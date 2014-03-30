@@ -1,4 +1,5 @@
 #include "BSTdef.h"
+#include "BSTOps.h"
 BST createEmptyBST()
 {
 	node head=NULL;

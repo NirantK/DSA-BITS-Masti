@@ -1,4 +1,5 @@
 #include "BSTdef.h"
+#include "BSTOps.h"
 int findNode(node p, book f){
     if(p==NULL){
         return FALSE;

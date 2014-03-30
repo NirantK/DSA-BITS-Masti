@@ -1,8 +1,9 @@
 #include "BSTdef.h"
+#include "BSTOps.h"
 void treePrint(node p){
     if(p!=NULL){
         treePrint(p->left);
-        printf("%3d->", p->b.acc);
+        printf("%d-> ", p->b.acc);
         treePrint(p->right);
     }
 }

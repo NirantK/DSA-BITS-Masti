@@ -1,4 +1,5 @@
 #include "BSTdef.h"
+#include "BSTOps.h"
 book newb;
 book findMaxP(node p){
 	if(p!=NULL){
