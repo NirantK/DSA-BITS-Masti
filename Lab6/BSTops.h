@@ -5,7 +5,7 @@
 
 BST createEmptyBST();
 // BST insertBST(BST bt, book b);
-// int findBST(BST bt, book b); //returns true or false: 0 for found
+int findBST(BST bt, book b); //returns true or false: 0 for found
 BST deleteBST(BST bt, book b); // handle all cases of deletion
 
 book findMaxPrice(BST bt); //in-order traversal
