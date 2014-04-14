@@ -1,0 +1,41 @@
+EXTRA LabSheet:(AVL Tree)
+
+A large retail store maintains the records of details relating to what their core customers purchase. The data is stored as <Customer ID, Item ID>. (You may use the large data set already uploaded in the website for this.)
+
+Write an application that reads all information from the data files, and allows for searching the list of items purchased by a specific Customer ID within worstcase time of O(log N), where N is the total number of records.
+
+Data Structures:
+PurchaseData: an AVl-tree containing purchaseInfo nodes. Each purchaseInfo node is a binary tree node containing cust_id and item_id apart from the fields required for AVL tree.
+
+
+Steps:
+1) Write a function that reads <Customer ID, Item ID> from a file named, say inputfile. 
+(Alternatively, you can read from standard input itself. while executing, use 
+$             cat inputfile | ./a.out 
+istead
+)
+
+2) insert each pair read as input as a node into the AVL-Tree of PurchaseData type.
+    You may write a function named
+	PurchaseData insert(PurchaseData pd, int cust_id, int item_id)
+	for this work.
+
+3) Write a function 
+       purchaseInfo find(PurchaseData pd, int cust_id)
+	   that searches for the first occurance of cust_id in the AVL tree, pd.
+
+4) Write a function 
+       purchaseInfo findAll(PurchaseData pd, int cust_id)
+	   that searches for the ALL occurance of cust_id in the AVL tree, pd.
+	   (If the data doesnt have duplicate entries, please add one or two for testing )
+
+
+IMPORTANT: the data provided is a very large file. 
+use the following command to extract just first 100 data elements.
+head -102 inputfile > data
+
+this will create a file named data containing the first 100 entries. Edit the first line of the file as 100 so that the file is having the same format as mentioned in the description.
+
+You may use this file, data, to do your testing.
+
+

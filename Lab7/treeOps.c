@@ -1,3 +1,4 @@
+# include "tree.h"
 struct node create(int key){
 	node newNode = (node)malloc(sizeof(struct avlnode));
     newNode->key = key;
