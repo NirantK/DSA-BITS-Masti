@@ -151,6 +151,102 @@ void findAll(purchaseInfo root, int custId){
     }
 }
 
+struct node * minValueNode(struct node* node)
+{
+    struct node* current = node;
+ 
+    /* loop down to find the leftmost leaf */
+    while (current->left != NULL)
+        current = current->left;
+ 
+    return current;
+}
+ 
+purchaseInfo deleteNode(purchaseInfo root, int custId, int itemId){
+    // STEP 1: PERFORM STANDARD BST DELETE
+ 
+    if (root == NULL)
+        return root;
+ 
+    // If the key to be deleted is smaller than the root's key,
+    // then it lies in left subtree
+    if ( custId < root->custId )
+        root->left = deleteNode(root->left, custId, itemId);
+ 
+    // If the key to be deleted is greater than the root's key,
+    // then it lies in right subtree
+    else if( custId > root->custId )
+        root->right = deleteNode(root->right, custId, itemId);
+ 
+    // if key is same as root's key, then This is the node
+    // to be deleted
+    else
+    {   // node with only one child or no child
+        if( (root->left == NULL) || (root->right == NULL) )
+        {
+            purchaseInfo temp = root->left ? root->left : root->right;
+ 
+            // No child case
+            if(temp == NULL)
+            {
+                temp = root;
+                root = NULL;
+            }
+            else // One child case
+             *root = *temp; // Copy the contents of the non-empty child
+ 
+            free(temp);
+        }
+        else
+        {
+            // node with two children: Get the inorder successor (smallest
+            // in the right subtree)
+            purchaseInfo temp = minValueNode(root->right);
+ 
+            // Copy the inorder successor's data to this node
+            root->custId = temp->custId;
+ 
+            // Delete the inorder successor
+            root->right = deleteNode(root->right, temp->custId, temp->itemId);
+        }
+    }
+ 
+    // If the tree had only one node then return
+    if (root == NULL)
+      return root;
+ 
+    // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
+    root->height = max(height(root->left), height(root->right)) + 1;
+ 
+    // STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to check whether
+    //  this node became unbalanced)
+    int balance = getBalance(root);
+ 
+    // If this node becomes unbalanced, then there are 4 cases
+ 
+    // Left Left Case
+    if (balance > 1 && getBalance(root->left) >= 0)
+        return rightRotate(root);
+ 
+    // Left Right Case
+    if (balance > 1 && getBalance(root->left) < 0){
+        root->left =  leftRotate(root->left);
+        return rightRotate(root);
+    }
+ 
+    // Right Right Case
+    if (balance < -1 && getBalance(root->right) <= 0)
+        return leftRotate(root);
+ 
+    // Right Left Case
+    if (balance < -1 && getBalance(root->right) > 0){
+        root->right = rightRotate(root->right);
+        return leftRotate(root);
+    }
+ 
+    return root;
+}
+
 
 int main(){
 	printf("\n");
@@ -158,7 +254,7 @@ int main(){
  
   /* Constructing tree given in the above figure */
 	root = insert(root, 10, 50);
-	root = insert(root, 10, 50);
+	root = insert(root, 10, 33);
 	root = insert(root, 10, 50);
 	root = insert(root, 10, 50);
   	root = insert(root, 20, 90);
@@ -166,8 +262,9 @@ int main(){
   	root = insert(root, 40, 50);
   	root = insert(root, 50, 60);
   	root = insert(root, 25, 50);
-	preOrder(root);
-	printf("\n");
+	// preOrder(root);
+	// printf("\n");
+    printf("Initial AVL Tree:\n");   
 	inOrder(root);
 	
 	// purchaseInfo naya = findNode(root, 21);
@@ -176,6 +273,8 @@ int main(){
 	// else
 	// 	printf("Not Found.\n");
 
-	findAll(root, 10);
-
+	// findAll(root, 10);
+    root = deleteNode(root, 10, 50);
+    printf("After deletion:\n");
+    preOrder(root);
 }
