@@ -1,4 +1,8 @@
 #include "AVLTree.h"
+/*Insert and Delete operations and their dependencies used from 
+http://www.geeksforgeeks.org/avl-tree-set-1-insertion/  and
+http://www.geeksforgeeks.org/avl-tree-set-2-deletion/ */
+
 
 int max(int a, int b){
     return (a > b)? a : b;
