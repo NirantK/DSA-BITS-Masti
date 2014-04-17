@@ -37,5 +37,3 @@ head -102 inputfile > data
 this will create a file named data containing the first 100 entries. Edit the first line of the file as 100 so that the file is having the same format as mentioned in the description.
 
 You may use this file, data, to do your testing.
-
-

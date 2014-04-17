@@ -1,4 +1,15 @@
-#include "tree.h"
+#include<stdio.h>
+#include<stdlib.h>
+ 
+// An AVL tree node
+struct node
+{
+    int key;
+    struct node *left;
+    struct node *right;
+    int height;
+};
+ 
 // A utility function to get maximum of two integers
 int max(int a, int b);
  
@@ -120,6 +131,7 @@ struct node* insert(struct node* node, int key)
     /* return the (unchanged) node pointer */
     return node;
 }
+ 
 // A utility function to print preorder traversal of the tree.
 // The function also prints height of every node
 void preOrder(struct node *root)

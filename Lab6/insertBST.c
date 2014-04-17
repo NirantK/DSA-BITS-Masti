@@ -1,5 +1,6 @@
 #include "BSTdef.h"
 #include "BSTOps.h"
+
 node createNode(book b){
     node newNode = (node)malloc(sizeof(bNode));
     newNode->b = b;
