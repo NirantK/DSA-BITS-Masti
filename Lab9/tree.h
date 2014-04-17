@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 typedef struct avlnode *PurchaseData;
-typedef struct avlnode *node;
 
 struct avlnode
 {
@@ -12,4 +11,3 @@ struct avlnode
     struct node *right;
     int height;
 };
-
