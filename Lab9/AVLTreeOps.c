@@ -13,7 +13,7 @@ purchaseInfo newNode(int custId, int itemId){
     newNode->custId = custId;
     newNode->itemId = itemId;
     newNode->left = newNode->right = NULL;
-    newNode->height = 1;
+    newNode->height = 0;
     return newNode;
 }
 
