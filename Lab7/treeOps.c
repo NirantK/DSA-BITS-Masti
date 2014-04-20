@@ -175,6 +175,15 @@ void inOrder(node root){
     }
 }
 
+/*under construction*/
+void writeToFile(node root, FILE *fp){
+	if(root!=NULL){
+		writeToFile(root->left, fp);
+	        fprintf("Word: %s,\tNo of Instances: %d,\n", root->word, root->count);
+		writeToFile(root->right, fp);
+		}
+}
+
 node asliInsert(node node, char word[], long pos){
     // int z = findNode(node, word);
     struct avlnode* up = retNode(node, word);
@@ -192,6 +201,7 @@ int main(){
     char word[100];
     node root = NULL;
     FILE *input = fopen("input.txt", "r");//text file for reading into a hash table
+FILE *out = fopen("new.txt","w+");
     if(input==NULL){
         exit(1);
     }        
@@ -202,4 +212,5 @@ int main(){
         // printf("%ld\t",ftell(input));        
     }
     inOrder(root);
+//	writeToFile(root, out);
 }

@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-c -g 
 LDFLAGS=
-SOURCES=newDriver.c createEmptyBST.c print.c insertBST.c find.c delete.c findMaxMin.c reOrder.c
+SOURCES=newDriver.c BSTOps.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=exec
 

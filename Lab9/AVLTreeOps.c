@@ -209,15 +209,12 @@ purchaseInfo deleteNode(purchaseInfo root, int custId, int itemId){
  
             // Copy the inorder successor's data to this node
             root->custId = temp->custId;
+            root->itemId = temp->itemId;
  
             // Delete the inorder successor
             root->right = deleteNode(root->right, temp->custId, temp->itemId);
         }
     }
- 
-    // If the tree had only one node then return
-    if (root == NULL)
-      return root;
  
     // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
     root->height = max(height(root->left), height(root->right)) + 1;

@@ -5,10 +5,10 @@ int main(){
 	book b = {10, "Introduction to Algorithms", "Cormen", 720};
     book b1 = {5, "Analysis of Algorithms", "Sedgewick", 1000};    
     book b2 = {3, "Arthashastra", "Chanakya", 3600};
-    book b3 = {50, "Losing My Virginity", "Richard Branson", 300};
-    book b4 = {100, "Because Shit Happened", "Harsh Snehanshu", 200};
-    book b5 = {9, "Business Technology and Knowledge Sharing", "APJ Abdul Kalam", 400};
-    book b6 = {90, "SM", "RK", 500};
+    book b3 = {50, "Losing My Virginity", "Richard Branson", 6000};
+    book b4 = {10, "Because Shit Happened", "Harsh Snehanshu", 200};
+    book b5 = {2, "Business Technology and Knowledge Sharing", "APJ Abdul Kalam", 400};
+    book b6 = {10, "SM", "RK", 500};
 	
 	bt = insertBST(bt, b);
 	bt = insertBST(bt, b1);
