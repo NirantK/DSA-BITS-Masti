@@ -7,6 +7,7 @@ typedef struct cl{
 	//Person Name; Max characters = 40
 	char name[40];
 	struct cl *next;
+	struct cl *prev;
 }contact;
 
 //typedef contact *phbook;
