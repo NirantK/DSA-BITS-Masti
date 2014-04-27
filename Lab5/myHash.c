@@ -206,7 +206,7 @@ void *gcalloc( int number, int size)
         exit(1);
     }
     else return p;
-}
+
 
 void print_stats(table *hash_table)
 {

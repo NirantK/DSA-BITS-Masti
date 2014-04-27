@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-c -g -Wall
+CFLAGS=-c -g
 LDFLAGS=
 SOURCES=treeOps.c
 OBJECTS=$(SOURCES:.c=.o)
