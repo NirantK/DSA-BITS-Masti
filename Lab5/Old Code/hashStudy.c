@@ -299,7 +299,7 @@ table *build_table( FILE *input)
      *  This is controlled by typedef'ed constant "RATIO"
      */
     
-    table *hash_table = gcalloc(1, sizeof(table));      //allocating memory to the hash table
+    table *hash_table = (table*)gcalloc(1, sizeof(table));      //allocating memory to the hash table
     int max_size;   //maximum ammount of items in a table to trigger the resizing
     int h;          //hash variable
     

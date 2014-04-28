@@ -35,18 +35,18 @@ int main(int argc, char **argv){
 	// int x[MAXLEN];
 	int i = readFile(argc, argv);
 	clock_t time;
-	FILE *out1 = fopen("out1.txt", "w");	
+	FILE *out = fopen("output.txt", "w");	
 	int max = (i<MAXLEN)?i:MAXLEN;
 	/*Sort*/
 	time = clock();
-	insertSort(x, max);
+	// insertSort(x, max);
 
     printf("Sorting using insertion sort took %6.10f s\n", print_time(time));	
 	time = clock();
 	i = readFile(argc, argv);
 	max = (i<MAXLEN)?i:MAXLEN;
-	mergesort(x,0,max);
-
+	// mergesort(x,0,max);
+	
     printf("Sorting using mergesort took %6.10f s\n", print_time(time));	
 	time = clock();
 	i = readFile(argc, argv);
@@ -54,7 +54,7 @@ int main(int argc, char **argv){
 	quickSort(x, 0, max);
 	while(i>0){
 		// printf("%d\n", x[i]);
-		fprintf(out1, "%d\n", x[i]);
+		fprintf(out, "%d\n", x[i]);
 		i--;
 	}
     printf("Sorting using quickSort took %6.10f s\n", print_time(time));	
