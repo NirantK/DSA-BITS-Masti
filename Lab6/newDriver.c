@@ -39,6 +39,6 @@ int main(){
 	printf("The oldest book is %s\n",oldest.title );
 
 	BST pricebt = reOrderBST(bt);
-	// bstPrint(pricebt);
+	bstPrint(pricebt);
 	return 0;
 }

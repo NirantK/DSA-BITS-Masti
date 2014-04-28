@@ -5,9 +5,9 @@
 struct node
 {
     int custId;
-    int itemId;
+    int itemId;//dta
     struct node *left;
-    struct node *right;
+    struct node *right;//pointers
     int height;
 };
 

@@ -179,7 +179,7 @@ void inOrder(node root){
 void writeToFile(node root, FILE *fp){
 	if(root!=NULL){
 		writeToFile(root->left, fp);
-	        fprintf("Word: %s,\tNo of Instances: %d,\n", root->word, root->count);
+	        fprintf(fp, "Word: %s,\tNo of Instances: %d,\n", root->word, root->count);
 		writeToFile(root->right, fp);
 		}
 }

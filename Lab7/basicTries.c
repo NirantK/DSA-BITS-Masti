@@ -187,6 +187,6 @@ int main()
         insert(&trie, keys[i]);
     }
     deleteKey(&trie, keys[0]); 
-    printf("%s %s\n", "she", search(&trie, "she") ? "Present in trie" : "Not present in trie"); 
+    printf("%s %s\n", "sea", search(&trie, "sea") ? "Present in trie" : "Not present in trie"); 
     return 0;
 }

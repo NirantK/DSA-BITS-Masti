@@ -206,7 +206,7 @@ struct node* deleteNode(struct node* root, int key){
  
     // If the tree had only one node then return
     if (root == NULL)
-      return root;
+       return root;
  
     // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
     root->height = max(height(root->left), height(root->right)) + 1;
@@ -263,7 +263,7 @@ int main()
  
   printf("Pre order traversal of the constructed AVL tree is \n");
   preOrder(root);
-
+  printf("\n");
   root = deleteNode(root, 10);
   preOrder(root);
  

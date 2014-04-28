@@ -6,11 +6,12 @@ int main()
 	// printf("%d\n", a);
 	FILE *ownerSource = fopen("owners.txt", "r");
 	owner o= populateVehicles(ownerSource);
-	printVehicleList(o);
-	printf("--------------------------------------------------\n");
+	// printVehicleList(o);
+	// printf("--------------------------------------------------\n");
 	FILE *driverSource = fopen("drivers.txt", "r");
 	driver d = populateDrivers(driverSource);
-	printDriversList(d);
+	// printDriversList(d);
+	makeRevokeList()
 	return 0;
 }
 

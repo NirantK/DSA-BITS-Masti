@@ -6,7 +6,7 @@ int main(){
 	int size = 8;
 
 	insertionSort_R(arr,0,size-1);
-	deDupR(arr,0,size-1,&size);			//our array is sorted and withour duplicates
+	deDupR(arr,0,size-1,&size);			//our array is sorted and without duplicates
 	
 	int i=0;
 	for(i=0;i<size;i++){

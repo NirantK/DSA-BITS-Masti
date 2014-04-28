@@ -3,6 +3,9 @@
 http://www.geeksforgeeks.org/avl-tree-set-1-insertion/  and
 http://www.geeksforgeeks.org/avl-tree-set-2-deletion/ */
 
+//AVL Trees are balanced binary search trees
+//BSTs are ordered binary trees. 
+// Thus, AVL Trees are a balanced and ordered binary trees.
 
 int max(int a, int b){
     return (a > b)? a : b;
@@ -140,7 +143,7 @@ purchaseInfo findNode(purchaseInfo p, int custId){
 }
 
 purchaseInfo find(PurchaseData pd, int custId){
-	findNode(pd->root, custId);
+	return findNode(pd->root, custId);
 }
 
 void findAll(purchaseInfo root, int custId){
@@ -148,8 +151,8 @@ void findAll(purchaseInfo root, int custId){
         // printf("custId:%d\titemId:%d\n", root->custId, root->itemId);
         findAll(root->left, custId);
         if(root->custId == custId){
-        	printf("Found\n");
-	        // printf("custId:%d\titemId:%d\n", root->custId, root->itemId);        	
+            printf("Found(findAll):%d and %d\n", root->itemId, root->custId);
+    	        // printf("custId:%d\titemId:%d\n", root->custId, root->itemId);        	
         }
         findAll(root->right, custId);
     }
@@ -185,7 +188,7 @@ purchaseInfo deleteNode(purchaseInfo root, int custId, int itemId){
     // if key is same as root's key, then This is the node
     // to be deleted
     else
-    {   // node with only one child or no child
+    { // node with only one child or no child
         if( (root->left == NULL) || (root->right == NULL) )
         {
             purchaseInfo temp = root->left ? root->left : root->right;
@@ -215,12 +218,14 @@ purchaseInfo deleteNode(purchaseInfo root, int custId, int itemId){
             root->right = deleteNode(root->right, temp->custId, temp->itemId);
         }
     }
+    if (root == NULL)
+       return root;
  
     // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
     root->height = max(height(root->left), height(root->right)) + 1;
  
     // STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to check whether
-    //  this node became unbalanced)
+    // this node became unbalanced)
     int balance = getBalance(root);
  
     // If this node becomes unbalanced, then there are 4 cases
@@ -231,7 +236,7 @@ purchaseInfo deleteNode(purchaseInfo root, int custId, int itemId){
  
     // Left Right Case
     if (balance > 1 && getBalance(root->left) < 0){
-        root->left =  leftRotate(root->left);
+        root->left = leftRotate(root->left);
         return rightRotate(root);
     }
  
@@ -252,9 +257,9 @@ purchaseInfo deleteNode(purchaseInfo root, int custId, int itemId){
 int main(){
 	printf("\n");
 	struct node *root = NULL;
- 
-  /* Constructing tree given in the above figure */
-	root = insert(root, 10, 50);
+    
+    /*Constructing a treee*/ 
+    root = insert(root, 10, 50);
 	root = insert(root, 10, 33);
 	root = insert(root, 10, 50);
 	root = insert(root, 10, 50);
@@ -263,19 +268,18 @@ int main(){
   	root = insert(root, 40, 50);
   	root = insert(root, 50, 60);
   	root = insert(root, 25, 50);
-	// preOrder(root);
-	// printf("\n");
     printf("Initial AVL Tree:\n");   
 	inOrder(root);
 	
-	// purchaseInfo naya = findNode(root, 21);
-	// if(naya!=NULL)
-	// 	printf("Found:%d\n", naya->itemId);
-	// else
-	// 	printf("Not Found.\n");
+	purchaseInfo naya = findNode(root, 20);
+	if(naya!=NULL)
+		printf("Found:%d and %d\n", naya->itemId, naya->custId);
+	else
+		printf("Not Found.\n");
 
-	// findAll(root, 10);
+	findAll(root, 10);
     root = deleteNode(root, 10, 50);
     printf("After deletion:\n");
     preOrder(root);
+    return 0;
 }

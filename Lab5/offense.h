@@ -94,7 +94,7 @@ table *grow_table(table *hash_table);
 void destroy(driver word_list);
 driver create_node(int uid, int license, int penalty);
 void *gcalloc( int number, int size);
-driver makeRevokeList(FILE *source, table *hash_table, int* count);
+// driver makeRevokeList(FILE *source, table *hash_table, int* count);
 
 /* Various helper functions */
 int ask_user(void);
